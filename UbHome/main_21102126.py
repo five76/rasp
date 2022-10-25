@@ -4,149 +4,9 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.utils import get_color_from_hex
-
+# https://stackoverflow.com/questions/45171309/how-to-get-id-and-text-value-of-a-kivy-button-as-string
 import urllib3
 import certifi
-
-KV = '''
-box:
-
-    id: root_widget
-    orientation: 'vertical'
-    canvas:
-        Color: 
-            rgba: 17/255.0, 96/255.0, 98/255.0, 1
-            #rgba: 255/255.0, 0/255.0, 0/255.0, 1
-        Rectangle:
-            pos: self. pos
-            size: self.size
-            
-    GridLayout:
-        cols: 3
-        rows: 6
-        padding:dp(5),dp(5),dp(5),dp(5)
-        spacing:5,5
-        #row_default_height: 40
-        #row_force_default: True
-        Button:
-            id: pr1
-            text: root.prep_list[0]
-            
-            background_color: root.but_color
-            #background_color: 253/255.0,234/255.0,168/255.0,0
-            border: 16,16,16,16
-            on_press: root_widget.select_prep(pr1.text)
-        Button:
-            id: pr2
-            text: root.prep_list[1]
-         
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr2.text)
-        Button:
-            id: pr3
-            text: root.prep_list[2]
-   
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr3.text)  
-        Button:
-            id: pr4
-            text: root.prep_list[3]
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr4.text)
-        Button:
-            id: pr5
-            text: root.prep_list[4]
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr5.text)
-        Button:
-            id: pr6
-            text: root.prep_list[5]
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr6.text)
-        Button:
-            id: pr7
-            text: root.prep_list[6]
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr7.text)
-        Button:
-            id: pr8
-            text: root.prep_list[7]
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr8.text)
-        Button:
-            id: pr9
-            text: root.prep_list[8]
-            background_color: root.but_color
-            on_press: root_widget.select_prep(pr9.text) 
-        Button:
-            id: back
-            text: "BACK"
-            background_color: 1,1,1,1
-            on_press: root_widget.update_prep(back.text)
-        Button:
-            id: hole
-            text: ""
-            background_color: 0,0,0,0
-            
-        Button:
-            id: next
-            text: "NEXT"
-            background_color: 1,1,1,1
-            on_press: root_widget.update_prep(next.text) 
-    #GridLayout:
-        #cols: 3
-        #rows: 1
-        #row_default_height: 40
-        #padding:dp(5),dp(5),dp(5),dp(5)
-        #spacing:5,5
-        #row_force_default: True
-        #background_color: 1,1,1,1
-        Button:
-            id: day1
-            text: root.data_list[0]
-            background_color: root.date_color
-            on_press: root_widget.result(day1.text)
-        Button:
-            id: day2
-            text: root.data_list[1]
-            background_color: root.date_color
-            on_press: root_widget.result(day2.text)
-        Button:
-            id: day3
-            text: root.data_list[2]
-            #background_normal :''
-            background_color: root.date_color
-            on_press: root_widget.result(day3.text)
-        Label:
-            id: hole1 
-                     
-    #GridLayout:
-    #    cols: 1
-    #    rows: 1
-    #    row_default_height: 20
-    #    row_force_default: True
-     #   padding:dp(5),dp(5),dp(5),dp(5)
-    #    spacing:5,5
-        Label:
-            id: fio
-            text: ""
-            color: 1, 1, 1, 1
-            font_size: dp(20)
-        Label:
-            id: hole1 
-            
-    GridLayout:
-        cols: 1
-        rows: 1
-        row_default_height: 100
-        row_force_default: False
-        Label:
-            id: itog
-            text: "Расписание"
-            color: 1, 1, 1, 1
-            
-'''
-
 
 class box(BoxLayout):
     global rasp
@@ -160,8 +20,8 @@ class box(BoxLayout):
         self.beg = 0
         self.end = 9
         self.fi = ''
-        self.but_color = get_color_from_hex('#FF94DF')
-        self.date_color = get_color_from_hex('#FFE861')
+        #self.but_color = get_color_from_hex('#FF94DF')
+        #self.date_color = get_color_from_hex('#FFE861')
 
         self.ll = len(list_prep)
         self.prep_list = self.change_prep(self.beg, self.end)
@@ -184,6 +44,12 @@ class box(BoxLayout):
 
     def change_prep(self, beg, end):
         return list_prep[beg:end]
+
+    def extract_id(self, instance):
+        print(instance.text)
+        # wid in self.walk():
+        #    print(wid.ids)
+        print('extract_id')
 
     def select_prep(self,p):
         self.fi = p
@@ -212,8 +78,8 @@ class box(BoxLayout):
 
 class MainApp(App):
     def build(self):
-        return Builder.load_string(KV)
-
+        #return Builder.load_string(KV)
+        return Builder.load_file('main_21102126.kv')
 
 if __name__ == "__main__":
     http = urllib3.PoolManager(ca_certs=certifi.where())
@@ -237,8 +103,5 @@ if __name__ == "__main__":
                     list_ur.append([r[1], r[2], r[3], r[4], r[6]])
             rec[d] = list_ur
         rasp[p] = rec
-    #fio = 'Новиков Д.Н.'
-    #fio = 'Новикова О.А'
-    #fio = 'Исламшина Н.С.'
-    fio = 'Хусейнов Р.В.'
+
     MainApp().run()

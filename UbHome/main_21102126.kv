@@ -1,0 +1,97 @@
+#: import C kivy.utils.get_color_from_hex
+<ButtonPrep@Button>:
+    background_normal: ''
+    background_color: C ('#80125C')
+    border: 16,16,16,16
+    on_press: app.root.select_prep(self.text)
+<ButtonForward@Button>:
+    background_normal: ''
+    background_color: C ('#808080')
+    on_press: app.root.update_prep(self.text)
+<ButtonDay@Button>:
+    background_normal: ''
+    background_color: C ('#94800D')
+    on_press: app.root.result(self.text)
+
+<box>:
+    id: root_widget
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgba: 17/255.0, 96/255.0, 98/255.0, 1
+        Rectangle:
+            pos: self. pos
+            size: self.size
+    GridLayout:
+        cols: 3
+        rows: 6
+        padding:dp(5),dp(5),dp(5),dp(5)
+        spacing:5,5
+        #row_default_height: 40
+        #row_force_default: True
+        ButtonPrep:
+            id: pr1
+            text: root.prep_list[0]
+        ButtonPrep:
+            id: pr2
+            text: root.prep_list[1]
+        ButtonPrep:
+            id: pr3
+            text: root.prep_list[2]
+        ButtonPrep:
+            id: pr4
+            text: root.prep_list[3]
+        ButtonPrep:
+            id: pr5
+            text: root.prep_list[4]
+        ButtonPrep:
+            id: pr6
+            text: root.prep_list[5]
+        ButtonPrep:
+            id: pr7
+            text: root.prep_list[6]
+        ButtonPrep:
+            id: pr8
+            text: root.prep_list[7]
+        ButtonPrep:
+            id: pr9
+            text: root.prep_list[8]
+        ButtonForward:
+            id: back
+            text: "BACK"
+        Button:
+            id: hole
+            text: ""
+            background_color: 0,0,0,0
+        ButtonForward:
+            id: next
+            text: "NEXT"
+        ButtonDay:
+            id: day1
+            text: root.data_list[0]
+        ButtonDay:
+            id: day2
+            text: root.data_list[1]
+        ButtonDay:
+            id: day3
+            text: root.data_list[2]
+        Label:
+            text: ""
+        Label:
+            id: fio
+            text: ""
+            color: 1, 1, 1, 1
+            font_size: dp(20)
+        Label:
+            text: ""
+    GridLayout:
+        cols: 1
+        rows: 1
+        row_default_height: 100
+        row_force_default: False
+        Label:
+            id: itog
+            text: "Расписание"
+            color: 1, 1, 1, 1
+
+box
