@@ -30,8 +30,8 @@
     rows: 6
     #padding:dp(5),dp(5),dp(5),dp(5)
     #spacing:5,5
-    row_default_height: 40
-    row_force_default: True
+    #row_default_height: 40
+    #row_force_default: True
 <GridKurs@GridLayout>:
     cols: 4
     rows: 1
@@ -269,14 +269,24 @@ WindowManager:
                     id: name_gr
                     text: "Расписание групп"
                 Label:
-        FloatLayout:
-            Button:
+        GridLayout:
+            rows: 2
+            col: 1
+            #padding:dp(5),dp(5)
+            #spacing:5,5
+            Label:
+            Label:
                 id: itogRasp
                 text: "Уровень -> Курс -> Группа -> Дата"
-                background_normal: ''
-                background_color: C ('#116067')
-                size_hint:.5,.8
-                pos_hint: {'center_x':0.5, 'center_y':.05}
+            #Label:
+        #FloatLayout:
+        #    Button:
+        #        id: itogRasp
+        #        text: "Уровень -> Курс -> Группа -> Дата"
+        #        background_normal: ''
+        #        background_color: C ('#118895')
+        #        size_hint:.4,.5
+        #        pos_hint: {'center_x':0.5, 'center_y':.2}
 
 
         FloatLayout:
@@ -284,8 +294,8 @@ WindowManager:
                 text: "Преподаватели"
                 background_normal: ''
                 background_color: C ('#808080')
-                size_hint:.25,.2
-                pos_hint: {'center_x':0.18, 'center_y':.15}
+                size_hint:.40,.15
+                pos_hint: {'center_x':0.25, 'center_y':.15}
 
                 on_press:
                     root.manager.transition.direction = 'right'
