@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = rasp
+title = Расписание ЮПК
 
 # (str) Package name
 package.name = app_rasp
@@ -37,7 +37,7 @@ version = 1.0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,requests,urllib3,chardet,charset_normalizer,idna,certifi
+requirements = python3,kivy,requests,urllib3,chardet,charset_normalizer,idna,certifi,datetime, pyyaml
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
@@ -47,6 +47,7 @@ requirements = python3,kivy,requests,urllib3,chardet,charset_normalizer,idna,cer
 
 # (str) Icon of the application
 #icon.filename = %(source.dir)s/data/icon.png
+icon.filename = logo-40.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
@@ -59,7 +60,7 @@ orientation = portrait
 #
 
 #
-# author = © Copyright Info
+author = ©Dmitry Novikov
 
 # change the major version of python used by the app
 osx.python_version = 3

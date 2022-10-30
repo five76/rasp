@@ -1,0 +1,309 @@
+#: import C kivy.utils.get_color_from_hex
+<ButtonPrep@Button>:
+    background_normal: ''
+    background_color: C ('#80125C')
+    border: 16,16,16,16
+    #on_press: app.root.select_prep(self.text)
+    #on_press: root.ids.root_widget.select_prep(self.text)
+<ButtonForward@Button>:
+    background_normal: ''
+    background_color: C ('#808080')
+    #on_press: app.root.update_prep(self.text)
+<ButtonDay@Button>:
+    background_normal: ''
+    background_color: C ('#94800D')
+    #on_press: app.root.result(self.text)
+<ButtonGroup@Button>:
+    background_normal: ''
+    background_color: C ('#80125C')
+    border: 16,16,16,16
+<ButtonKurs@Button>:
+    background_normal: ''
+    background_color: C ('#94800D')
+    border: 16,16,16,16
+<ButtonLevel@Button>:
+    background_normal: ''
+    background_color: C ('#80125C')
+    border: 16,16,16,16
+<GridLevel@GridLayout>:
+    cols: 1
+    rows: 6
+    #padding:dp(5),dp(5),dp(5),dp(5)
+    #spacing:5,5
+    #row_default_height: 40
+    #row_force_default: True
+<GridKurs@GridLayout>:
+    cols: 4
+    rows: 1
+    padding:dp(5),dp(5),dp(5),dp(5)
+    spacing:5,5
+    #row_default_height: 40
+    #row_force_default: True
+<GridGr@GridLayout>:
+    cols: 3
+    rows: 4
+    padding:dp(5),dp(5),dp(5),dp(5)
+    spacing:5,5
+<GridNameGr@GridLayout>:
+    cols: 1
+    rows: 1
+    padding:dp(5),dp(5),dp(5),dp(5)
+    spacing:5,5
+
+
+WindowManager:
+    ScreenOne:
+    ScreenTwo:
+    ScreenThree:
+
+<ScreenOne>:
+    name: "screen_one"
+
+    BoxLayout:
+        id: root_widget
+        orientation: 'vertical'
+        canvas:
+            Color:
+                rgba: 17/255.0, 96/255.0, 98/255.0, 1
+            Rectangle:
+                pos: self. pos
+                size: self.size
+        GridLayout:
+            cols: 3
+            rows: 6
+            padding:dp(5),dp(5),dp(5),dp(50)
+            spacing:5,5
+            #row_default_height: 40
+            #row_force_default: True
+            ButtonPrep:
+                id: pr1
+                text: root.prep_list[0]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr2
+                text: root.prep_list[1]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr3
+                text: root.prep_list[2]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr4
+                text: root.prep_list[3]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr5
+                text: root.prep_list[4]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr6
+                text: root.prep_list[5]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr7
+                text: root.prep_list[6]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr8
+                text: root.prep_list[7]
+                on_press: root.select_prep(self.text)
+            ButtonPrep:
+                id: pr9
+                text: root.prep_list[8]
+                on_press: root.select_prep(self.text)
+            ButtonForward:
+                id: back
+                text: "BACK"
+                on_press: root.update_prep(self.text)
+            Button:
+                id: hole
+                text: ""
+                background_color: 0,0,0,0
+            ButtonForward:
+                id: next
+                text: "NEXT"
+                on_press: root.update_prep(self.text)
+            ButtonDay:
+                id: day1
+                text: root.data_list[0]
+                on_press: root.result(self.text)
+            ButtonDay:
+                id: day2
+                text: root.data_list[1]
+                on_press: root.result(self.text)
+            ButtonDay:
+                id: day3
+                text: root.data_list[2]
+                on_press: root.result(self.text)
+            Label:
+                text: ""
+            Label:
+                id: fio
+                text: ""
+                color: 1, 1, 1, 1
+                #font_size: dp(20)
+            Label:
+                text: ""
+        GridLayout:
+            cols: 1
+            rows: 2
+            #row_default_height: 150
+            #row_force_default: True
+            Label:
+                id: itog
+                text: "Расписание"
+                color: 1, 1, 1, 1
+
+            FloatLayout:
+                Button:
+                    text: "Группы"
+                    background_normal: ''
+                    background_color: C ('#808080')
+                    size_hint:.2,.2
+                    pos_hint: {'center_x':0.89, 'center_y':.15}
+
+                    on_press:
+                        # You can define the duration of the change
+                        # and the direction of the slide
+                        root.manager.transition.direction = 'left'
+                        root.manager.transition.duration = 1
+                        root.manager.current = 'screen_two'
+
+<ScreenTwo>:
+    name: "screen_two"
+    BoxLayout:
+        id: root_widget
+        orientation: 'vertical'
+        canvas:
+            Color:
+                rgba: 17/255.0, 96/255.0, 98/255.0, 1
+            Rectangle:
+                pos: self. pos
+                size: self.size
+
+        GridLevel:
+            #pos_hint: {'center_x':0.5, 'center_y':.5}
+            id: grid_level
+            GridLayout:
+                rows: 1
+                col: 4
+                padding:dp(5),dp(5),dp(5),dp(5)
+                spacing:5,5
+                ButtonLevel:
+                    id: lev_npo
+                    text: "Профессии"
+                    on_press: root.select_level(self.text)
+                    #size_hint: .5 , .1
+                ButtonLevel:
+                    id: lev_spo
+                    text: "Специальности"
+                    #size_hint: .5 , .3
+                    on_press: root.select_level(self.text)
+                    #multiline: True
+            GridLayout:
+                rows: 1
+                col: 4
+                padding:dp(5),dp(5)
+                spacing:5,5
+                ButtonKurs:
+                    text: "1"
+                    on_press: root.select_kurs(self.text)
+
+                ButtonKurs:
+                    text: "2"
+                    on_press: root.select_kurs(self.text)
+                ButtonKurs:
+                    text: "3"
+                    on_press: root.select_kurs(self.text)
+                ButtonKurs:
+                    text: "4"
+                    on_press: root.select_kurs(self.text)
+            GridLayout:
+                rows: 1
+                col: 3
+                padding:dp(5),dp(5),dp(5),dp(5)
+                spacing:5,5
+                ButtonGroup:
+                    id: gr1
+                    on_press: root.select_group(self.text)
+                ButtonGroup:
+                    id: gr2
+                    on_press: root.select_group(self.text)
+                ButtonGroup:
+                    id: gr3
+                    on_press: root.select_group(self.text)
+            GridLayout:
+                rows: 1
+                col: 3
+                padding:dp(5),dp(5),dp(5),dp(5)
+                spacing:5,5
+                ButtonGroup:
+                    id: gr4
+                    on_press: root.select_group(self.text)
+                ButtonGroup:
+                    id: gr5
+                    on_press: root.select_group(self.text)
+                ButtonGroup:
+                    id: gr6
+                    on_press: root.select_group(self.text)
+            GridLayout:
+                rows: 1
+                col: 3
+                padding:dp(5),dp(5)
+                spacing:5,5
+                ButtonDay:
+                    id: daygr1
+                    text: root.data_list[0]
+                    on_press: root.resultgr(self.text)
+                ButtonDay:
+                    id: daygr2
+                    text: root.data_list[1]
+                    on_press: root.resultgr(self.text)
+                ButtonDay:
+                    id: daygr3
+                    text: root.data_list[2]
+                    on_press: root.resultgr(self.text)
+            GridLayout:
+                rows: 1
+                col: 3
+                padding:dp(5),dp(5)
+                spacing:5,5
+                Label:
+                Label:
+                    id: name_gr
+                    text: "Расписание групп"
+                Label:
+        GridLayout:
+            rows: 2
+            col: 1
+            #padding:dp(5),dp(5)
+            #spacing:5,5
+            Label:
+            Label:
+                id: itogRasp
+                text: "Уровень -> Курс -> Группа -> Дата"
+            #Label:
+        #FloatLayout:
+        #    Button:
+        #        id: itogRasp
+        #        text: "Уровень -> Курс -> Группа -> Дата"
+        #        background_normal: ''
+        #        background_color: C ('#118895')
+        #        size_hint:.4,.5
+        #        pos_hint: {'center_x':0.5, 'center_y':.2}
+
+
+        FloatLayout:
+            Button:
+                text: "Преподаватели"
+                background_normal: ''
+                background_color: C ('#808080')
+                size_hint:.40,.15
+                pos_hint: {'center_x':0.25, 'center_y':.15}
+
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 1
+                    root.manager.current = 'screen_one'
+
+
