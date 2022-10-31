@@ -341,81 +341,81 @@ WindowManager:
                 id: aud1
                 text: "100"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud2
                 text: "101"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud3
                 text: "102"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud4
                 text: "103"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud5
                 text: "104"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud6
                 text: "105"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud7
                 text: "106"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud8
                 text: "107"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud9
                 text: "108"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud10
                 text: "109"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud11
                 text: "110"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud12
                 text: "111"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud13
                 text: "112"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud14
                 text: "113"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
             ButtonPrep:
-                id: aud1
+                id: aud15
                 text: "114"
                 #root.aud_list[0]
-                #on_press: root.select_prep(self.text)
+                on_press: root.select_aud(self.text)
 
         GridLayout:
             cols: 1
-            rows: 3
+            rows: 4
             #padding:dp(5),dp(5),dp(5),dp(5)
             #spacing:5,5
             GridLayout:
@@ -426,7 +426,7 @@ WindowManager:
                 ButtonForward:
                     id: back
                     text: "BACK"
-                    #on_press: root.update_prep(self.text)
+                    on_press: root.update_aud(self.text)
                 Button:
                     id: hole
                     text: ""
@@ -434,7 +434,7 @@ WindowManager:
                 ButtonForward:
                     id: next
                     text: "NEXT"
-                    #on_press: root.update_prep(self.text)
+                    on_press: root.update_aud(self.text)
             GridLayout:
                 cols: 3
                 rows: 1
@@ -443,37 +443,52 @@ WindowManager:
                 ButtonDay:
                     id: day1
                     text: root.data_list[0]
-                    on_press: root.result(self.text)
+                    on_press: root.result_aud(self.text)
                 ButtonDay:
                     id: day2
                     text: root.data_list[1]
-                    on_press: root.result(self.text)
+                    on_press: root.result_aud(self.text)
                 ButtonDay:
                     id: day3
                     text: root.data_list[2]
-                    on_press: root.result(self.text)
+                    on_press: root.result_aud(self.text)
             GridLayout:
                 cols: 3
                 rows: 1
+                padding:dp(5),dp(5),dp(5),dp(5)
+                spacing:5,5
                 Label:
                     text: ""
                 Label:
-                    id: fio
+                    id: select_aud
                     text: ""
                     color: 1, 1, 1, 1
                     #font_size: dp(20)
                 Label:
                     text: ""
-
+            GridLayout:
+                cols: 3
+                rows: 1
+                padding:dp(5),dp(5),dp(5),dp(5)
+                spacing:5,5
+                Label:
+                    text: ""
+                Label:
+                    id: select_aud1
+                    text: ""
+                    color: 1, 1, 1, 1
+                    #font_size: dp(20)
+                Label:
+                    text: ""
         GridLayout:
             cols: 1
             rows: 1
-            padding:dp(5),dp(5),dp(5),dp(5)
-            spacing:5,5
+            #padding:dp(5),dp(5),dp(5),dp(5)
+            #spacing:5,5
             #row_default_height: 200
             #row_force_default: True
             Label:
-                id: itog
+                id: itog_aud
                 text: "Расписание"
                 color: 1, 1, 1, 1
 

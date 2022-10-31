@@ -25,6 +25,7 @@ global list_group_npo
 global date_sokr
 global dir_aud
 
+
 class ScreenOne(Screen):
     #global rasp
     #global list_date
@@ -240,72 +241,74 @@ class ScreenTwo(Screen):
 
 
 class ScreenThree(Screen):
+    global list_aud
 
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
         self.data_list = list_date
-        self.beg = 0
-        self.end = 9
-        self.fi = ''
+        self.first_digit_aud = 1
+        self.aud_list = list_aud[::]
 
-        self.ll = len(list_prep)
-        self.prep_list = self.change_prep(self.beg, self.end)
 
-    def result(self, d):
+    def result_aud(self, d):
         # pass
         try:
-            rp = rasp[self.fi]
-            rasp_prep = rp[d]
-            ss = lambda x: int(x[0])
-            list_ur = []
-            for x in sorted(rasp_prep, key=ss):
-                list_ur.append(' '.join(x))
-            k = '\n'.join(list_ur)
-            if ' 0 ' in k:
-                print(k)
-                start = 0
-                pos = k.find(' 0 ',start)
-                while pos != -1:
-                    start = pos + 3
-                    k = k[:pos+1] + k[pos+3:]
-                    pos = k.find(' 0 ', start)
-            self.ids["itog"].text = k
-            self.ids["fio"].text = self.fi + '\n' + d
+            rasp = dir_aud[self.aud][d]
+            #print(rasp)
+
+            temp = []
+            for lst in rasp:
+                ur = ' '.join(lst)
+                temp.append(ur)
+
+            k = '\n'.join(temp)
+
+            self.ids["itog_aud"].text = k
+            #print(k)
+            self.ids["select_aud"].text = self.aud + '\n' + d
 
 
         except:
-            self.ids["fio"].text = self.fi + '\n' + d
+            self.ids["select_aud"].text = self.aud + '\n' + d
 
-    def change_prep(self, beg, end):
-        return list_prep[beg:end]
+    def change_aud(self, first_digit_aud):
+        res = [aud for aud in list_aud if aud[0] == str(first_digit_aud)]
+        return res
 
-    def extract_id(self, instance):
-        print(instance.text)
-        print('extract_id')
 
-    def select_prep(self, p):
-        self.fi = p
-        self.ids["fio"].text = self.fi
-        self.ids["itog"].text = ""
+    def select_aud(self, p):
+        self.aud = p
+        self.ids["select_aud"].text = self.aud
+        self.ids["itog_aud"].text = ""
 
-    def update_prep(self, t):
-        if t == 'BACK' and self.beg >= 0:
-            self.beg = self.beg - 9
-            self.end = self.end - 9
-            # self.ids["hole"].text = str(self.beg) + '-' + str(self.end-1)
-        elif t == 'NEXT' and self.end < self.ll:
-            self.beg = self.end
-            self.end = self.end + 9
-            # self.ids["hole"].text = str(self.beg) + '-' + str(self.end-1)
-        else:
-            return 0
-        self.prep_list = self.change_prep(self.beg, self.end)
-
-        for i in range(0, 9):
+    def clear_aud(self):
+        for i in range(0, 15):
             try:
-                self.ids["pr" + str(i + 1)].text = self.prep_list[i]
+                self.ids["aud" + str(i + 1)].text = ""
             except:
                 continue
+
+    def update_aud(self, t):
+        if t == 'BACK' and self.first_digit_aud > 1:
+            self.first_digit_aud -= 1
+
+        elif t == 'NEXT' and self.first_digit_aud < 6:
+            self.first_digit_aud += 1
+
+        else:
+            return 0
+
+        self.aud_list = self.change_aud(self.first_digit_aud)
+
+        self.clear_aud()
+
+        for i in range(0, 15):
+            try:
+                self.ids["aud" + str(i + 1)].text = self.aud_list[i]
+            except:
+                continue
+
+        #print(self.aud_list)
         # pass
 
 
@@ -370,8 +373,8 @@ if __name__ == "__main__":
     #print(ds)
     date_sokr = yaml.safe_load(ds.data)
     #print(date_sokr['01.11.2022'])
-    print(date_sokr)
-    print(list(date_sokr.keys()))
+    #print(date_sokr)
+    #print(list(date_sokr.keys()))
     ss = lambda x: int(x[:2])
     lst1 = [datetime.datetime.strptime(x[0], '%d.%m.%Y') for x in df if '.' in x[0]]
     lst2 = list(set(lst1))
@@ -405,7 +408,7 @@ if __name__ == "__main__":
                     lessons_in_aud.append([x[1], x[2], x[5]])
             lesson_in_dates[d] = sorted(lessons_in_aud,key=ss1)
         dir_aud[aud] = lesson_in_dates
-    print(dir_aud)
+    #print(dir_aud)
 
     rasp = create_rasp(df, list_prep, list_date, 5)              # расписание преподавателей
     rasp_gr_npo = create_rasp(df, list_group_npo, list_date, 2)  # расписание групп нпо
